@@ -1,0 +1,32 @@
+blockquote {
+	border-left: 5px solid var(--clr-primary);
+	padding: var(--space-md);
+	position: relative;
+	font-style: normal;
+	margin: 0 0 var(--space-md) 0;
+
+	quotes: '\201C''\201D''\2018''\2019';
+
+	p {
+		color: var(--clr-primary);
+		font-size: 20px;
+		font-weight: 700;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+
+	footer,
+	cite {
+		font-style: normal;
+		margin-top: var(--space-md);
+	}
+}

@@ -1,0 +1,30 @@
+.list {
+	&--unstyled {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&--columns {
+		padding: 0;
+
+		columns: 2;
+		column-gap: 2rem;
+		list-style-position: inside;
+
+		> li {
+			column-span: all;
+
+			+ li {
+				margin-top: 0.5rem;
+			}
+
+			&:nth-last-child(n + 5) {
+				&,
+				~ * {
+					column-span: none;
+				}
+			}
+		}
+	}
+}

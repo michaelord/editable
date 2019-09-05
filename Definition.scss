@@ -1,0 +1,26 @@
+dl {
+	dt {
+		font-weight: 600;
+	}
+}
+
+.definition {
+	&--default {
+		> div + div {
+			margin-top: 20px;
+		}
+	}
+
+	&--tabular {
+		display: flex;
+
+		> div {
+			flex-grow: 1;
+			text-align: center;
+
+			&:not(:last-child) {
+				border-right: 1px solid #ccc;
+			}
+		}
+	}
+}

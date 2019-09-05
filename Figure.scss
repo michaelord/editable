@@ -1,0 +1,27 @@
+figure {
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 100%;
+
+	img {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+
+	figcaption {
+		padding: 10px 0;
+
+		> * {
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

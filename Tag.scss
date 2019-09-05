@@ -1,0 +1,10 @@
+.tag {
+	$parent: &;
+
+	text-transform: uppercase;
+	display: inline-block;
+	font-size: 12px;
+	margin: 0 10px 0 0;
+	letter-spacing: 1px;
+	font-weight: 700;
+}
