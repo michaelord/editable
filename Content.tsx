@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react';
+
+import * as Types from 'components/types';
 
 export type ContentProps = {
-	content?: string;
+	content?: Types.RichText;
 };
 
 export const Content = (props: ContentProps) => {

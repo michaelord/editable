@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React from 'react';
+
+import * as Types from 'components/types';
 
 export type TextProps = {
 	content?: string;
-	className?: string;
+	className?: Types.Text;
 };
 
 export const Text = (props: TextProps) => {

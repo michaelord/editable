@@ -1,14 +1,15 @@
-import * as React from 'react';
-
+import {Icon} from 'components/icon';
+import {getModifiers} from 'components/libs';
+import {Priority, Size} from 'components/types';
+import React from 'react';
+import {Text} from './';
 import './Link.scss';
 
-import {Text} from './';
-
-import {getModifiers} from 'components/libs';
+import * as Types from 'components/types';
 
 export type Anchor = {
-	href: string;
-	children?: React.ReactNode;
+	href?: Types.Url | null;
+	children?: Types.Children;
 	hreflang?: string;
 	download?: boolean;
 	target?: string;
@@ -24,10 +25,9 @@ export type Interaction = {
 	icon?: React.ReactNode;
 	iconSuffix?: React.ReactNode;
 	base?: string;
+	isActive?: boolean;
 	onClick?: (ev: MouseEvent) => void;
 };
-
-import {Size, Priority} from 'components/types';
 
 export type ButtonProps = {
 	size?: Size;
@@ -38,28 +38,26 @@ export type ButtonProps = {
 export type LinkX = Interaction & Anchor;
 
 export type LinkItem = LinkX & ButtonProps;
-
 export class Link extends React.PureComponent<LinkItem> {
 	get atts(): object {
-		const {
-			base = 'btn',
-			isWide,
-			href,
-			priority = 'default',
-			classes = null,
-			size = 'default',
-			onClick,
-		} = this.props;
+		const {base = 'btn', isWide, isActive, href, priority, classes = null, size, onClick, target} = this.props;
+
+		const internal = href ? /^\/(?!\/)/.test(href) : true;
 
 		return {
 			className:
 				getModifiers(base, {
 					wide: isWide,
 					priority,
-					size: `size-${size}`,
+					size: size ? `size-${size}` : undefined,
+					active: isActive,
 				}) + (classes ? ` ${classes}` : ''),
+			'aria-current': isActive ? 'page' : undefined,
 			href,
+			target,
 			onClick,
+			// TODO: denote an external link
+			role: internal ? undefined : 'external',
 		};
 	}
 
@@ -75,9 +73,10 @@ export class Link extends React.PureComponent<LinkItem> {
 
 		return (
 			<>
-				{icon && <IconPrefix className="icon" />}
+				{icon && <Icon icon={IconPrefix} />}
+
 				<Text content={label} className={`text ${base}__text`} />
-				{iconSuffix && <IconSuffix className="icon" />}
+				{iconSuffix && <Icon icon={IconSuffix} />}
 			</>
 		);
 	}

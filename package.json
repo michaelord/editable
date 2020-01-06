@@ -1,20 +1,24 @@
 {
-  "name": "editable",
-  "private": true,
-  "description": "...",
-  "version": "0.1.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/michaelord/editable.git"
-  },
-  "devDependencies": {},
-  "author": "michaelord",
-  "keywords": [],
-  "dependencies": {
-    "components/people": "http://github.com/michaelord/people.git",
-    "components/libs": "http://github.com/michaelord/libs.git",
-    "components/editable": "http://github.com/michaelord/editable.git",
-    "components/types": "http://github.com/michaelord/types.git"
-  }
+	"name": "editable",
+	"private": true,
+	"description": "...",
+	"version": "0.1.0",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/michaelord/editable.git"
+	},
+	"devDependencies": {},
+	"author": "michaelord",
+	"keywords": [],
+	"dependencies": {
+		"components/editable": "http://github.com/michaelord/editable.git",
+		"components/people": "http://github.com/michaelord/people.git",
+		"components/libs": "http://github.com/michaelord/libs.git",
+		"components/types": "http://github.com/michaelord/types.git",
+		"components/styleguide": "http://github.com/michaelord/styleguide.git",
+		"components/icon": "http://github.com/michaelord/icon.git",
+		"components/loader": "http://github.com/michaelord/loader.git",
+		"dayjs": "^1.8.17"
+	}
 }

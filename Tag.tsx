@@ -1,12 +1,13 @@
-import * as React from 'react';
-
+import React, {memo} from 'react';
 import './Tag.scss';
+
+import * as Types from 'components/types';
 
 export type TagProps = {
 	label?: string;
 };
 
-export const Tag = (props: TagProps) => {
+export const Tag = memo((props: TagProps) => {
 	const {label} = props;
 	if (!label) {
 		return null;
@@ -15,4 +16,4 @@ export const Tag = (props: TagProps) => {
 	const base: string = 'tag';
 
 	return <span className={base} dangerouslySetInnerHTML={{__html: label}} />;
-};
+});

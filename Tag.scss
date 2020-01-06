@@ -1,10 +1,35 @@
 .tag {
 	$parent: &;
 
-	text-transform: uppercase;
 	display: inline-block;
-	font-size: 12px;
-	margin: 0 10px 0 0;
-	letter-spacing: 1px;
-	font-weight: 700;
+	// line-height: 1;
+	border-radius: var(--radius-sm);
+
+	margin-bottom: var(--space-xs);
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 14px;
+	padding: 4px 0;
+
+	p & {
+		margin-bottom: 0;
+	}
+
+	&[data-tag],
+	&[data-accent],
+	[data-accent] & {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+
+	&[data-tag] {
+		//background-color: var(--accent-light);
+		//color: var(--accent-color);
+	}
+
+	&[data-accent],
+	[data-accent] & {
+		background-color: var(--accent-light);
+		color: var(--accent-color);
+	}
 }

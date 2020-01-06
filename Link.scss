@@ -2,43 +2,42 @@
 	border: 1px solid red;
 }
 
-.spinner {
-	height: 20px;
-	width: 20px;
-	display: block;
-	border-radius: 50%;
-	border: 3px solid currentColor;
-}
-
 .btn,
 .link {
 	$parent: &;
 
-	display: inline-flex;
-	align-items: center;
 	position: relative;
 	color: inherit;
 	background-color: transparent;
-	justify-content: center;
-	align-items: center;
+
 	cursor: pointer;
 	transition: all 0.15s ease;
 	border: none;
 
 	svg {
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 	}
 
-	> * {
-		margin: 0 5px;
+	&,
+	&__inner {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 
-		&:first-child {
-			margin-left: 0;
+		> * {
+			margin: 0 5px;
+			&:first-child {
+				margin-left: 0;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
 		}
-		&:last-child {
-			margin-right: 0;
-		}
+	}
+
+	&__inner {
+		margin: 0;
 	}
 
 	&:not(:last-child):not(:only-child):not(#{$parent}--wide) {
@@ -94,8 +93,8 @@
 	min-width: 64px;
 	line-height: 1;
 	white-space: nowrap;
-	padding: var(--space-sm) var(--space-md);
-	border-radius: var(--radius);
+	padding: var(--space-sm) var(--space-lg);
+	border-radius: var(--btn-radius);
 	font-size: var(--btn-font-size);
 	font-family: var(--btn-font, inherit);
 	text-transform: var(--btn-text-transform, initial);
@@ -103,11 +102,11 @@
 	//
 	margin: 0 0 8px 0;
 
-	--btn-background: #3a3a3a;
-	--btn-color: #fff;
+	--btn-background: var(--color-contrast-low);
+	--btn-color: var(--color-contrast-higher);
 
 	&--primary {
-		--btn-background: var(--clr-primary);
+		--btn-background: var(--color-primary);
 		--btn-color: #fff;
 	}
 
@@ -132,26 +131,27 @@
 		}
 	}
 
-	// TODO
 	&--size-sm {
-		padding: 2px;
+		font-size: var(--btn-sm);
+		padding: var(--space-sm);
 	}
 
 	&--size-md {
-		padding: 4px;
+		font-size: var(--btn-md);
 	}
 
 	&--size-lg {
-		padding: 8px;
+		font-size: var(--btn-lg);
 	}
 
-	.spinner {
+	&__loader {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		opacity: 0;
 		transition: opacity 0.3s;
+		margin: 0;
 	}
 
 	&--loading {
@@ -159,7 +159,7 @@
 			opacity: 0;
 		}
 
-		.spinner {
+		#{$parent}__loader {
 			opacity: 1;
 		}
 	}
@@ -172,7 +172,7 @@
 	&[disabled],
 	&--disabled {
 		cursor: default;
-		box-shadow: none;
+		box-shadow: var(--shadow-none);
 		pointer-events: none;
 
 		&.hover,

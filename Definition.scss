@@ -1,25 +1,127 @@
-dl {
+.definition {
+	$parent: &;
+
 	dt {
+		position: relative;
 		font-weight: 600;
 	}
-}
 
-.definition {
-	&--default {
-		> div + div {
-			margin-top: 20px;
+	dd {
+		> *:last-child {
+			margin-bottom: 0;
 		}
 	}
 
-	&--tabular {
+	&__icon {
+		width: var(--icon-md);
+		height: var(--icon-md);
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: var(--space-sm);
+		text-align: center;
+	}
+
+	&--default {
+		#{$parent}__cell + #{$parent}__cell {
+			margin-top: var(--space-md);
+		}
+	}
+
+	&--columns {
 		display: flex;
 
-		> div {
+		#{$parent}__icon {
+			display: block;
+			margin: 0 auto var(--space-sm) auto;
+
+			width: var(--icon-xl);
+			height: var(--icon-xl);
+		}
+
+		#{$parent}__cell {
 			flex-grow: 1;
+			flex-basis: 0;
+
 			text-align: center;
+			padding: var(--space-md);
 
 			&:not(:last-child) {
-				border-right: 1px solid #ccc;
+				border-right: 1px solid var(--color-contrast-low);
+			}
+		}
+	}
+
+	&--default,
+	&--stacked {
+		&#{$parent}--icons {
+			dt,
+			dd {
+				padding-left: calc(var(--icon-md) + var(--space-sm));
+			}
+		}
+
+		#{$parent}__icon {
+			position: absolute;
+			left: 0;
+		}
+	}
+
+	&--stacked,
+	&--side-by-side {
+		#{$parent}__cell {
+			padding: var(--space-sm) 0;
+			&:not(:last-child) {
+				border-bottom: 1px solid var(--color-contrast-low);
+			}
+		}
+	}
+
+	&--side-by-side,
+	&--spaced {
+		#{$parent}__cell {
+			display: flex;
+			justify-content: space-between;
+
+			dt {
+				flex-grow: 1;
+			}
+
+			dd {
+				text-align: right;
+				margin-left: var(--space-sm);
+			}
+		}
+	}
+
+	&--spaced {
+		br {
+			content: ' ';
+			&:after {
+				content: ', ';
+			}
+		}
+
+		&#{$parent}--icons {
+			#{$parent}__cell {
+				padding: 4px 0;
+			}
+		}
+
+		#{$parent}__icon {
+			width: var(--icon-sm);
+			height: var(--icon-sm);
+		}
+		#{$parent}__cell {
+			dt {
+				display: flex;
+
+				&:after {
+					content: '';
+					flex-grow: 1;
+					border-bottom: 1px solid var(--color-contrast-low);
+					margin-left: var(--space-sm);
+					margin-bottom: 4px;
+				}
 			}
 		}
 	}

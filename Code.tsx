@@ -1,22 +1,24 @@
-import * as React from 'react';
-
+import React, {memo} from 'react';
 import './Code.scss';
 
-// https://www.npmjs.com/package/react-syntax-highlighter
+import * as Types from 'components/types';
 
-export const Code = (/*props: CodeProps*/) => {
+export type CodeProps = {
+	code: string;
+	hasCopy?: Types.TrueFalse;
+};
+
+export const Code = memo((props: CodeProps) => {
 	const base = 'code';
 
-	const code = `.component {
-        background-color: var(--color-bg);
-        padding: var(--space-md);
-        height: auto;
-        width: 600px;
-}`;
+	const {code, hasCopy} = props;
 
 	return (
-		<pre className={`${base}`}>
-			<code dangerouslySetInnerHTML={{__html: code}} />
-		</pre>
+		<div className={`${base}`}>
+			<pre>
+				<code>{code}</code>
+			</pre>
+			{hasCopy && <button>(copy)</button>}
+		</div>
 	);
-};
+});

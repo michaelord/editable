@@ -1,18 +1,44 @@
-import * as React from 'react';
+import React, {memo} from 'react';
 
-export type ImgProps = {
-	src?: string;
-	width?: number;
-	height?: number;
-	alt?: string;
-};
+import * as Types from 'components/types';
 
-export const Img = (props: ImgProps) => {
-	const {src, width, height} = props;
+import {Balls} from 'components/loader';
+
+import './Img.scss';
+
+export const Img = memo((props: Types.Image) => {
+	const base: string = 'img';
+	const {src, width, height, alt = '', color, loading} = props;
 
 	if (!src) {
 		return null;
 	}
 
-	return <img src={src} width={width} height={height} />;
-};
+	if (typeof src === 'string') {
+		if (src.indexOf('<svg') > -1) {
+			return <div dangerouslySetInnerHTML={{__html: src}} />;
+		}
+
+		const style: any = color
+			? {
+					backgroundColor: color,
+			  }
+			: undefined;
+
+		// TODO: loader
+
+		if (loading === 'lazy') {
+			return (
+				<span className={`${base} ${base}--loading`} style={style}>
+					<span className={`${base}__loader`}>
+						<Balls />
+					</span>
+				</span>
+			);
+		}
+
+		return <img className={base} src={src} width={width} height={height} alt={alt} style={style} />;
+	}
+
+	return src;
+});

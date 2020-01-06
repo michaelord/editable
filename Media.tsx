@@ -1,16 +1,17 @@
-import * as React from 'react';
+import React, {memo} from 'react';
+import {Img, Video} from 'components/media';
 
-import {Video, Img} from './';
+import * as Types from 'components/types';
 
 export type MediaProps = {
 	src?: string;
 	width?: number;
 	height?: number;
 	alt?: string;
-	type?: string;
+	type?: 'image' | 'video';
 };
 
-export const Media = (props: MediaProps) => {
+export const Media = memo((props: MediaProps) => {
 	const {src, type = 'image'} = props;
 
 	if (!src) {
@@ -24,4 +25,4 @@ export const Media = (props: MediaProps) => {
 	}
 
 	return <Video src={src} />;
-};
+});

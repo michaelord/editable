@@ -1,6 +1,7 @@
 blockquote {
-	border-left: 5px solid var(--clr-primary);
+	// border-left: 5px solid var(--color-primary);
 	padding: var(--space-md);
+
 	position: relative;
 	font-style: normal;
 	margin: 0 0 var(--space-md) 0;
@@ -8,9 +9,29 @@ blockquote {
 	quotes: '\201C''\201D''\2018''\2019';
 
 	p {
-		color: var(--clr-primary);
-		font-size: 20px;
-		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.5;
+
+		position: relative;
+
+		// max-width: 75ch;
+
+		&:first-of-type/*, &:first-child*/ {
+			&:before {
+				content: open-quote;
+				font-size: 200%;
+				position: absolute;
+				top: -10px;
+				left: -5px;
+				transform: translateX(-100%);
+			}
+		}
+
+		&:last-of-type {
+			&:after {
+				content: close-quote;
+			}
+		}
 
 		&:last-child {
 			margin-bottom: 0;
@@ -28,5 +49,77 @@ blockquote {
 	cite {
 		font-style: normal;
 		margin-top: var(--space-md);
+	}
+
+	footer > * + * {
+		margin-top: var(--space-md);
+	}
+}
+
+.blockquote {
+	$parent: &;
+
+	&--pull-left {
+		@media (min-width: 800px) {
+			float: left;
+			margin-right: 65px;
+
+			max-width: 400px;
+			clear: right;
+		}
+	}
+
+	&--pull-right {
+		@media (min-width: 800px) {
+			float: right;
+			margin-left: 65px;
+
+			max-width: 400px;
+			clear: right;
+		}
+	}
+
+	&--bordered {
+		border-left: 4px solid var(--color-primary);
+		padding-left: var(--space-lg);
+	}
+
+	&--quote {
+		padding: 0;
+		#{$parent} {
+			&__content {
+				background: var(--color-primary);
+				color: #fff;
+				padding: 30px 40px;
+				border-radius: var(--radius-lg);
+				position: relative;
+
+				+ * {
+					margin-left: 20px;
+				}
+			}
+		}
+
+		&.has-author {
+			#{$parent} {
+				&__content {
+					&:after {
+						content: '';
+						position: absolute;
+						height: 30px;
+						width: 30px;
+						background: var(--color-primary);
+						border-radius: var(--radius-md);
+						transform: rotate(-135deg);
+						bottom: -10px;
+						left: 30px;
+					}
+				}
+
+				&__footer {
+					margin-top: 25px;
+				}
+			}
+		}
 	}
 }
